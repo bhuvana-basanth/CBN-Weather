@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org/" ng-app="appMaps">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Weather Information</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  <script src="https://code.angularjs.org/1.3.14/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+  <script src="http://rawgit.com/angular-ui/angular-google-maps/2.3.2/dist/angular-google-maps.js"></script>
+  <script src='js/angular-simple-logger.js'></script>
+  <script src='js/simpleWeather.js'></script>
+  <script type='text/javascript' src='js/script.js'></script>
+  <!--script-->
+  <!--css-->
+  <style type="text/css"> 
+  </style>
+</head>
+
+<body ng-app="appMaps">
+  <div id="instructions"></br>
+  	<p> <b>Click on location markers to get weather info of that particular location</b></p>
+  </div>
+  <div id="map_canvas" ng-controller="mainCtrl">
+    <ui-gmap-google-map center="map.center" zoom="map.zoom">
+      
+      <ui-gmap-window 
+        show="map.window.show" 
+        coords="map.window.model" 
+        options="map.window.options" 
+        closeClick="map.window.closeClick()"
+        templateUrl="'infowindow.tpl.html'" 
+        templateParameter="map.window">
+      </ui-gmap-window>
+      
+      <ui-gmap-markers  
+        models="map.markers" 
+        coords="'self'"  
+        events="map.markersEvents"
+        options="'options'">
+      </ui-gmap-markers>
+      
+    </ui-gmap-google-map>
+  </div>
+  <br>
+   <div id="getAllWeather" class="backgroundClr" ng-controller="mainCtrl">
+      <button id="getAllLocation" class="btn btn-primary marginLeft" ng-click="getAll()">Get Weather Details of All Highlighted Locations</button>
+      <p id="weatherUpdate" class="marginLeft"></p>
+      <p id="weatherInfo" class="marginLeft"></p>
+  </div>
+  <!--example-->
+</body>
+
+</html>
